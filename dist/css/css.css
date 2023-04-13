@@ -1,0 +1,60 @@
+*, body, html {
+    font-family: 'IranSans' !important; /*direction: rtl !important;*/
+    /*font-family: 'vazir',' Comic Sans MS' !important; !*direction: rtl !important;*!*/
+
+}
+.en {
+    font-family: "Comic Sans MS" !important;
+    direction: ltr;
+    text-align: left;
+}
+
+.pointer{
+    cursor: pointer;
+}
+body{
+overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    cursor: pointer !important;
+    background-color: #cccccc;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    /*box-shadow: inset 0 0 5px grery;*/
+    /*border-radius: 10px;*/
+    cursor: pointer !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: dimgray;
+    border-radius: 10px;
+    cursor: pointer !important;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: darkgray;
+    cursor: pointer !important;
+
+}
+
+ *[contentEditable="true"]{
+     min-height: 200px;
+ }
+
+ *[contentEditable="true"]:focus,
+ *[contentEditable="true"]:hover {
+    outline: 0 !important;
+     direction: rtl !important;
+     text-align: right !important;
+
+}
+p{
+    text-align: justify !important;
+}
