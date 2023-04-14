@@ -11,11 +11,13 @@
 </template>
 
 <script>
+import App from '../App'
 export default {
   name: "ProductImages",
+  components:{App},
   data(){
     return{
-      url: 'https://panel.webagent.ir'
+      url: App.data().apiUrl,
     }
   }
 }

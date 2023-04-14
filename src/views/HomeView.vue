@@ -143,10 +143,10 @@
 
 import ProductCard from "@/components/ProductCard";
 import Slider from "@/components/Slider";
-// import Carousel from "@/components/Carousel";
+import App from '../App';
 export default {
   name: 'HomeView',
-  components: {Slider, ProductCard},
+  components: {Slider, ProductCard, App},
   data(){
     return{
       slides: [],
@@ -157,7 +157,6 @@ export default {
       sale:[],
       soon:[],
 
-      url:'https://panel.shop2.webagent.ir',
     }
   },
   mounted(){
@@ -174,42 +173,42 @@ export default {
   methods:{
     getNew(){
       let params = '?stock=&cat_ids=&off=&sort=new&search=&limit=6&sale=false';
-      axios.get(this.url+'/api/product'+params) // app.data.apiUrl
+      axios.get(App.data().apiUrl+'/api/product'+params) // app.data.apiUrl
           .then((response)=>{ this.news = response.data;})
           .catch((error)=>{console.log(error)});
     },
     getOff(){
       let params = '?stock=&cat_ids=&off=true&sort=&search=&limit=4&sale=false';
-      axios.get(this.url+'/api/product'+params) // app.data.apiUrl
+      axios.get(App.data().apiUrl+'/api/product'+params) // app.data.apiUrl
           .then((response)=>{ this.off = response.data;})
           .catch((error)=>{console.log(error)});
     },
     getVip(){
       let params = '?stock=true&cat_ids=&off=&sort=&search=&limit=2&sale=false';
-      axios.get(this.url+'/api/product'+params) // app.data.apiUrl
+      axios.get(App.data().apiUrl+'/api/product'+params) // app.data.apiUrl
           .then((response)=>{ this.vip = response.data;})
           .catch((error)=>{console.log(error)});
     },
     getLimited(){
       let params = '?stock=limited&cat_ids=&off=&sort=&search=&limit=2&sale=false';
-      axios.get(this.url+'/api/product'+params) // app.data.apiUrl
+      axios.get(App.data().apiUrl+'/api/product'+params) // app.data.apiUrl
           .then((response)=>{ this.limited = response.data;})
           .catch((error)=>{console.log(error)});
     },
     getSale(){
       let params = '?stock=&cat_ids=&off=&sort=&search=&limit=4&sale=true';
-      axios.get(this.url+'/api/product'+params) // app.data.apiUrl
+      axios.get(App.data().apiUrl+'/api/product'+params) // app.data.apiUrl
           .then((response)=>{ this.sale = response.data;})
           .catch((error)=>{console.log(error)});
     },
     getSoon(){
       let params = '?stock=&cat_ids=&off=&sort=&search=&limit=6&sale=';
-      axios.get(this.url+'/api/product'+params) // app.data.apiUrl
+      axios.get(App.data().apiUrl+'/api/product'+params) // app.data.apiUrl
           .then((response)=>{ this.soon = response.data;})
           .catch((error)=>{console.log(error)});
     },
     getSlides(){
-      axios.get(this.url+'/api/slide')
+      axios.get(App.data().apiUrl+'/api/slide')
           .then((response)=>{ this.slides = response.data
           console.log(response.data)
           ;})

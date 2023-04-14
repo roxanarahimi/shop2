@@ -14,7 +14,7 @@
                 <tbody>
                 <tr v-for="item in 3">
                   <td style="width: 120px">
-                    <img style="width: 120px; height: auto" src="http://localhost:8080/img/blog8-1355x1020.jpg" alt="">
+                    <img style="width: 120px; height: auto" src="/img/blog8-1355x1020.jpg" alt="">
                   </td>
                   <td style="direction: rtl">
                     <div>

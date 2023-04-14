@@ -163,7 +163,7 @@ export default {
 
     })
     const getData = () => {
-      axios.get('http://localhost:8000/api/user/' + JSON.parse(localStorage.getItem('user')).id)
+      axios.get('https://panel.shop2.webagent.ir/api/user/' + JSON.parse(localStorage.getItem('user')).id)
           .then((response) => {
             user.value = response.data;
             localStorage.setItem('user', JSON.stringify(response.data));

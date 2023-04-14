@@ -272,10 +272,10 @@
 <script>
 import {onMounted, ref} from "vue";
 import Banner from "@/components/Banner";
-
+import App from '../App'
 export default {
   name: "Profile",
-  components: {Banner},
+  components: {Banner, App},
   setup() {
     const user = ref('');
     const states = ref([]);
@@ -286,19 +286,19 @@ export default {
       getData();
     });
     const getData = () => {
-      axios.get('http://localhost:8000/api/user/' + JSON.parse(localStorage.getItem('user')).id)
+      axios.get(App.data().apiUrl+'/api/user/' + JSON.parse(localStorage.getItem('user')).id)
           .then((response) => {
             user.value = response.data;
             localStorage.setItem('user', JSON.stringify(response.data));
             console.log(response.data)
           });
-      axios.get('http://localhost:8000/api/state')
+      axios.get(App.data().apiUrl+'/api/state')
           .then((response) => {
             states.value = response.data;
           })
     }
     const findCities = () => {
-      axios.get('http://localhost:8000/api/state/' + document.getElementById('state').value)
+      axios.get(App.data().apiUrl+'/api/state/' + document.getElementById('state').value)
           .then((response) => {
             state.value = response.data;
           })
@@ -306,7 +306,7 @@ export default {
 
     };
     const findCitiesE = () => {
-      axios.get('http://localhost:8000/api/state/' + document.getElementById('stateEdit').value)
+      axios.get(App.data().apiUrl+'/api/state/' + document.getElementById('stateEdit').value)
           .then((response) => {
             city_id.value = 0;
             citiesE.value = response.data.cities;
@@ -315,7 +315,7 @@ export default {
 
     };
     const saveAdd = () => {
-      axios.post('http://localhost:8000/api/address/user', {
+      axios.post(App.data().apiUrl+'/api/address/user', {
         user_id: user.value.id,
         title: document.getElementById('title').value,
         city_id: document.getElementById('city').value,
@@ -334,7 +334,7 @@ export default {
 
     };
     const updateAdd = () => {
-      axios.post('http://localhost:8000/api/address/user/' + document.getElementById('idEdit').value,
+      axios.post(App.data().apiUrl+'/api/address/user/' + document.getElementById('idEdit').value,
           {
             title: document.getElementById('titleEdit').value,
             city_id: document.getElementById('cityEdit').value,
@@ -355,7 +355,7 @@ export default {
     };
 
     const updateUser = () => {
-      axios.post('http://localhost:8000/api/user/' + JSON.parse(localStorage.getItem('user')).id, {
+      axios.post(App.data().apiUrl+'/api/user/' + JSON.parse(localStorage.getItem('user')).id, {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         gender: document.getElementById('gender').value,

@@ -72,9 +72,10 @@
 
 <script>
 import {onMounted, ref} from "vue";
-
+import App from '../App.vue';
 export default {
   name: "Cart",
+  components: {App},
   setup(){
     const user = ref({});
     const cart = ref({});
@@ -82,7 +83,7 @@ export default {
       getData();
     })
     const getData = () => {
-      axios.get('http://localhost:8000/api/user/' + JSON.parse(localStorage.getItem('user')).id)
+      axios.get(App.data().apiUrl+'/api/user/' + JSON.parse(localStorage.getItem('user')).id)
           .then((response) => {
             user.value = response.data;
             localStorage.setItem('user', JSON.stringify(response.data));;
@@ -100,7 +101,7 @@ export default {
 
     const removeItem = (id) => {
 
-      axios.post('http://localhost:8000/api/remove/order/item/' + id,{
+      axios.post(App.data().apiUrl+'/api/remove/order/item/' + id,{
         order_item_id: id
       })
           .then((response)=>{
@@ -132,7 +133,7 @@ export default {
       }
     }
     const updateQuantity=(item_id, quantity)=> {
-      axios.post('http://localhost:8000/api/item/quantity/update', {item_id: item_id, quantity: quantity})
+      axios.post(App.data().apiUrl+'/api/item/quantity/update', {item_id: item_id, quantity: quantity})
           .then((response) => {
             if (response.status === 200) {
               cart.value = response.data;

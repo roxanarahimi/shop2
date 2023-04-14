@@ -67,16 +67,15 @@
 
 <script>
 import ProductCard from "@/components/ProductCard";
-import App from "@/App"
+import App from "../App"
 
 export default {
   name: "Products",
-  components: {ProductCard},
+  components: {ProductCard, App},
   data() {
     return {
       products: [],
       categories: [],
-      url: 'https://shop2.webagent.ir'
     }
   },
   mounted() {
@@ -114,7 +113,7 @@ export default {
 
       console.log(params)
       document.getElementById('loader').classList.remove('d-none');
-      fetch(this.url + "/api/product" + params)
+      fetch(App.data().apiUrl+ + "/api/product" + params)
           .then((res) => res.json())
           .then(async (data) => {
 
@@ -138,7 +137,7 @@ export default {
 
     },
     getCategories() {
-      fetch(this.url + "/api/category/product")
+      fetch(App.data().apiUrl + "/api/category/product")
           .then((res) => res.json())
           .then((data) => {
 

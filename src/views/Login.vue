@@ -71,7 +71,9 @@
 
 <script>
 import {onMounted, ref} from "vue";
+import App from '../App';
 export default {
+  components:{App},
   setup() {
     onMounted(()=>{
       localStorage.clear();
@@ -105,7 +107,7 @@ export default {
 
       if(mobile.value.length === 11 && mobile.value.startsWith('09')){
         message.value = [];
-        axios.post('http://127.0.0.1:8000/api/otp/mobile', {
+        axios.post(App.data().apiUrl+'/api/otp/mobile', {
           mobile: document.getElementById('mobile').value,
           scope: 'user'
         }, {progress: false})
@@ -177,7 +179,7 @@ export default {
 
       if (code.length === 4) {
 
-        axios.post('http://127.0.0.1:8000/api/mobile/login', {
+        axios.post(App.data().apiUrl+'/api/mobile/login', {
           mobile: document.getElementById('mobile').value,
           scope: 'user',
           password: document.getElementById("code1").value + document.getElementById("code2").value + document.getElementById("code3").value + document.getElementById("code4").value

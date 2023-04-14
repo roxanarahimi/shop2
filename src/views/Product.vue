@@ -155,15 +155,15 @@
 <script>
 import {onMounted, ref} from "vue";
 import {useRoute} from "vue-router/dist/vue-router";
-
+import App from '../App'
 export default {
   name: "Product",
+  components: { App},
   setup() {
 
     const user = ref(JSON.parse(localStorage.getItem('user')))
     const router = useRoute();
     const id = ref(router.params.id);
-    const url = ref('https://panel.shop2.webagent.ir');
     const product = ref({});
     const colors = ref([]);
     const images = ref([]);
@@ -171,7 +171,7 @@ export default {
     const sizes = ref([]);
 
     const getData = () => {
-      axios.get('https://panel.shop2.webagent.ir/api/product/' + id.value,)
+      axios.get(App.data().apiUrl+'/api/product/' + id.value,)
           .then((response) => {
             product.value = response.data.product;
             features.value = JSON.parse(response.data.product.features);
@@ -185,10 +185,10 @@ export default {
             }
             console.log(response.data)
             console.log(colors.value)
-            document.getElementById('img0').setAttribute('src',url.value+response.data.product.images[0])
-            document.getElementById('img1').setAttribute('src',url.value+response.data.product.images[1])
-            document.getElementById('img2').setAttribute('src',url.value+response.data.product.images[2])
-            document.getElementById('img3').setAttribute('src',url.value+response.data.product.images[3])
+            document.getElementById('img0').setAttribute('src',App.data().apiUrl+response.data.product.images[0])
+            document.getElementById('img1').setAttribute('src',App.data().apiUrl+response.data.product.images[1])
+            document.getElementById('img2').setAttribute('src',App.data().apiUrl+response.data.product.images[2])
+            document.getElementById('img3').setAttribute('src',App.data().apiUrl+response.data.product.images[3])
           })
           .then(()=>{
             showDimensions();
@@ -214,7 +214,7 @@ export default {
       } else {
 
 
-        axios.post("https://panel.shop2.webagent.ir/api/order", {
+        axios.post(App.data().apiUrl+"/api/order", {
           user_id: JSON.parse(localStorage.user).id,
           product_id: product.value.id,
           product_size_id: document.getElementById('size_id').value,
@@ -275,7 +275,7 @@ export default {
 
         let color = document.querySelector('.selected_color').getAttribute('data-name');
 
-        axios.get("https://panel.shop2.webagent.ir/api/sizes/product/" + id.value  + '/' + color)
+        axios.get(App.data().apiUrl+"/api/sizes/product/" + id.value  + '/' + color)
             .then(async (res) => {
               sizes.value = [];
               let j = 0;
@@ -293,7 +293,7 @@ export default {
 
 
     return {
-      id, url, product, colors, images, addToCart, getData, router, features, showDimensions, selectColor, sizes, user
+      id,  product, colors, images, addToCart, getData, router, features, showDimensions, selectColor, sizes, user
     }
   },
 
