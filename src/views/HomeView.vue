@@ -2,9 +2,11 @@
   <div class="home">
     <div class="row ">
       <div class="col-12 mb-3">
-        <div class=" bg-white " style="min-height: 400px; background: url('img/monaghan-12-1354x508.jpg') center top no-repeat; ">
+        <!--        <div class=" bg-white " style="min-height: 400px; background: url('img/monaghan-12-1354x508.jpg') center top no-repeat; ">-->
+        <div class=" " style="min-height: 400px;">
 <!--          <carousel :slides="slides"  />-->
 
+          <slider   :slides="slides" />
         </div>
       </div>
       <div class="col-12 mb-3">
@@ -107,7 +109,7 @@
               </div>
 
             </div>
-<!--            <carousel :transition="1000" :autoplay="0"  :all="sale" :show="3" />-->
+            <!--            <carousel :transition="1000" :autoplay="0"  :all="sale" :show="3" />-->
 
           </div>
         </div>
@@ -140,16 +142,14 @@
 // @ is an alias to /src
 
 import ProductCard from "@/components/ProductCard";
+import Slider from "@/components/Slider";
 // import Carousel from "@/components/Carousel";
 export default {
   name: 'HomeView',
-  components: {ProductCard},
+  components: {Slider, ProductCard},
   data(){
     return{
-      slides: ['img/monaghan-12-1354x508.jpg',
-        'img/monaghan-10-1354x508.jpg',
-        'img/monaghan-8-1920x720.jpg',
-        'img/monaghan-5-1354x508.jpg'],
+      slides: [],
       news:[],
       off:[],
       vip:[],
@@ -162,6 +162,7 @@ export default {
   },
   mounted(){
 
+    this.getSlides();
     this.getOff();
     this.getNew();
     this.getVip();
@@ -174,38 +175,45 @@ export default {
     getNew(){
       let params = '?stock=&cat_ids=&off=&sort=new&search=&limit=6&sale=false';
       axios.get(this.url+'/api/product'+params) // app.data.apiUrl
-      .then((response)=>{ this.news = response.data;})
-      .catch((error)=>{console.log(error)});
+          .then((response)=>{ this.news = response.data;})
+          .catch((error)=>{console.log(error)});
     },
-     getOff(){
+    getOff(){
       let params = '?stock=&cat_ids=&off=true&sort=&search=&limit=4&sale=false';
       axios.get(this.url+'/api/product'+params) // app.data.apiUrl
-      .then((response)=>{ this.off = response.data;})
-      .catch((error)=>{console.log(error)});
+          .then((response)=>{ this.off = response.data;})
+          .catch((error)=>{console.log(error)});
     },
     getVip(){
       let params = '?stock=true&cat_ids=&off=&sort=&search=&limit=2&sale=false';
       axios.get(this.url+'/api/product'+params) // app.data.apiUrl
-      .then((response)=>{ this.vip = response.data;})
-      .catch((error)=>{console.log(error)});
+          .then((response)=>{ this.vip = response.data;})
+          .catch((error)=>{console.log(error)});
     },
     getLimited(){
       let params = '?stock=limited&cat_ids=&off=&sort=&search=&limit=2&sale=false';
       axios.get(this.url+'/api/product'+params) // app.data.apiUrl
-      .then((response)=>{ this.limited = response.data;})
-      .catch((error)=>{console.log(error)});
+          .then((response)=>{ this.limited = response.data;})
+          .catch((error)=>{console.log(error)});
     },
     getSale(){
       let params = '?stock=&cat_ids=&off=&sort=&search=&limit=4&sale=true';
       axios.get(this.url+'/api/product'+params) // app.data.apiUrl
-      .then((response)=>{ this.sale = response.data;})
-      .catch((error)=>{console.log(error)});
+          .then((response)=>{ this.sale = response.data;})
+          .catch((error)=>{console.log(error)});
     },
     getSoon(){
       let params = '?stock=&cat_ids=&off=&sort=&search=&limit=6&sale=';
       axios.get(this.url+'/api/product'+params) // app.data.apiUrl
-      .then((response)=>{ this.soon = response.data;})
-      .catch((error)=>{console.log(error)});
+          .then((response)=>{ this.soon = response.data;})
+          .catch((error)=>{console.log(error)});
+    },
+    getSlides(){
+      axios.get(this.url+'/api/slide')
+          .then((response)=>{ this.slides = response.data
+          console.log(response.data)
+          ;})
+          .catch((error)=>{console.log(error)});
     },
 
   }
