@@ -61,8 +61,8 @@ export default {
 
   data(){
     return{
-      apiUrl:'https://panel.webagent.ir',
-      imgUrl:'https://panel.webagent.ir',
+      apiUrl:'https://panel.shop2.webagent.ir',
+      imgUrl:'https://panel.shop2.webagent.ir',
     }
   },
   updated() {

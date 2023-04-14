@@ -76,6 +76,7 @@ export default {
     return {
       products: [],
       categories: [],
+      url: 'https://shop2.webagent.ir'
     }
   },
   mounted() {
@@ -113,7 +114,7 @@ export default {
 
       console.log(params)
       document.getElementById('loader').classList.remove('d-none');
-      fetch(App.data().apiUrl + "/api/product" + params)
+      fetch(this.url + "/api/product" + params)
           .then((res) => res.json())
           .then(async (data) => {
 
@@ -137,7 +138,7 @@ export default {
 
     },
     getCategories() {
-      fetch(App.data().apiUrl + "/api/category/product")
+      fetch(this.url + "/api/category/product")
           .then((res) => res.json())
           .then((data) => {
 

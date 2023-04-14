@@ -163,7 +163,7 @@ export default {
     const user = ref(JSON.parse(localStorage.getItem('user')))
     const router = useRoute();
     const id = ref(router.params.id);
-    const url = ref('https://panel.webagent.ir');
+    const url = ref('https://panel.shop2.webagent.ir');
     const product = ref({});
     const colors = ref([]);
     const images = ref([]);
@@ -171,7 +171,7 @@ export default {
     const sizes = ref([]);
 
     const getData = () => {
-      axios.get('http://localhost:8000/api/product/' + id.value,)
+      axios.get('https://panel.shop2.webagent.ir/api/product/' + id.value,)
           .then((response) => {
             product.value = response.data.product;
             features.value = JSON.parse(response.data.product.features);
@@ -214,7 +214,7 @@ export default {
       } else {
 
 
-        axios.post("http://localhost:8000/api/order", {
+        axios.post("https://panel.shop2.webagent.ir/api/order", {
           user_id: JSON.parse(localStorage.user).id,
           product_id: product.value.id,
           product_size_id: document.getElementById('size_id').value,
@@ -275,7 +275,7 @@ export default {
 
         let color = document.querySelector('.selected_color').getAttribute('data-name');
 
-        axios.get("http://localhost:8000/api/sizes/product/" + id.value  + '/' + color)
+        axios.get("https://panel.shop2.webagent.ir/api/sizes/product/" + id.value  + '/' + color)
             .then(async (res) => {
               sizes.value = [];
               let j = 0;
