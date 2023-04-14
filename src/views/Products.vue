@@ -113,7 +113,7 @@ export default {
 
       console.log(params)
       document.getElementById('loader').classList.remove('d-none');
-      fetch(App.data().apiUrl+ + "/api/product" + params)
+      fetch(App.data().apiUrl+ "/api/product" + params)
           .then((res) => res.json())
           .then(async (data) => {
 
