@@ -5,7 +5,7 @@
     </div>
     <div class="carousel-inner">
       <div v-for="(item,i) in slides" :key="i" class="carousel-item " :class="{active: i==0}" >
-        <img :src="'http://localhost:8000'+item.image" class="d-block w-100" alt="...">
+        <img :src="'https://panel.shop2.webagent.ir'+item.image" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>{{ item.title }}</h5>
           <p>{{ item.subTitle }}</p>

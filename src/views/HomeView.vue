@@ -6,7 +6,7 @@
         <div class=" " style="min-height: 400px;">
 <!--          <carousel :slides="slides"  />-->
 
-          <slider   :slides="slides" />
+          <slider :slides="slides" />
         </div>
       </div>
       <div class="col-12 mb-3">
@@ -157,7 +157,7 @@ export default {
       sale:[],
       soon:[],
 
-      url:'http://localhost:8000',
+      url:'https://panel.shop2.webagent.ir',
     }
   },
   mounted(){
