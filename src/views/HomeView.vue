@@ -3,7 +3,7 @@
     <div class="row ">
       <div class="col-12 mb-3">
         <!--        <div class=" bg-white " style="min-height: 400px; background: url('img/monaghan-12-1354x508.jpg') center top no-repeat; ">-->
-        <div class=" " style="min-height: 400px;">
+        <div class="">
 <!--          <carousel :slides="slides"  />-->
 
           <slider :slides="slides" />
