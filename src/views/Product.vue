@@ -153,7 +153,7 @@
 </template>
 
 <script>
-import {onMounted, ref} from "vue";
+import {onBeforeUnmount, onMounted, onUnmounted, ref} from "vue";
 import {useRoute} from "vue-router/dist/vue-router";
 import App from '../App'
 export default {
@@ -291,7 +291,13 @@ export default {
     };
 
 
+onBeforeUnmount(()=>{
+  document.getElementById('img0').setAttribute('src','')
+  document.getElementById('img1').setAttribute('src','')
+  document.getElementById('img2').setAttribute('src','')
+  document.getElementById('img3').setAttribute('src','')
 
+})
     return {
       id,  product, colors, images, addToCart, getData, router, features, showDimensions, selectColor, sizes, user
     }

@@ -31,13 +31,13 @@
         <div class="col-12 p-0 m-0 mb-3">
           <div class="card">
             <div class="card-body">
-              <nav id="sortNav" class=" text-start py-0 px-2 small">
-                <a class="sort pointer active-sort" id="new" @click="sortBy('new')">جدید ترین </a>
-                <a class="sort pointer" id="sale" @click="sortBy('sale')">پرفروش ترین </a>
-                <a class="sort pointer" id="view" @click="sortBy('view')">پر بازدید ترین </a>
-                <a class="sort pointer" id="score" @click="sortBy('score')">محبوب ترین </a>
-                <a class="sort pointer" id="cheap" @click="sortBy('cheap')">ارزان ترین </a>
-                <a class="sort pointer" id="expensive" @click="sortBy('expensive')">گران ترین </a>
+              <nav id="sortNav" class=" text-start py-0 px-2 small row" >
+               <a class="sort pointer btn text-secondary fw-bold col-6 col-md-4 col-lg-2 active-sort" id="new" @click="sortBy('new')">جدید ترین </a>
+               <a class="sort pointer btn text-secondary fw-bold col-6 col-md-4 col-lg-2" id="sale" @click="sortBy('sale')">پرفروش ترین </a>
+               <a class="sort pointer btn text-secondary fw-bold col-6 col-md-4 col-lg-2" id="view" @click="sortBy('view')">پر بازدید ترین </a>
+               <a class="sort pointer btn text-secondary fw-bold col-6 col-md-4 col-lg-2" id="score" @click="sortBy('score')">محبوب ترین </a>
+               <a class="sort pointer btn text-secondary fw-bold col-6 col-md-4 col-lg-2" id="cheap" @click="sortBy('cheap')">ارزان ترین </a>
+               <a class="sort pointer btn text-secondary fw-bold col-6 col-md-4 col-lg-2" id="expensive" @click="sortBy('expensive')">گران ترین </a>
               </nav>
             </div>
           </div>
