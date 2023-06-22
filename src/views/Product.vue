@@ -35,34 +35,34 @@
           </div>
           <div class="row">
             <div class="col-md-12 mb-2">
-              <label class="label" >رنگ</label>
+              <label class="label">رنگ</label>
               <!--              <select id="color" class="form-select form-select-sm">-->
               <!--                <option v-for="item in colors" :value="item.color_name">{{ item.color_name }}</option>-->
               <!--              </select>-->
 
-              <div class = "d-flex w-100 py-1 ">
-                <!-- like radio -->
-
-                <div v-for = "(color,index) in colors" :key = "index" class = "color-border">
-                  <div @click = "selectColor(index)" class = "color-circle" :data-name = "color.color_name" :style = "'background-color:'+ color.color_code+';'"/>
+              <div id="colorsPart" class="d-flex w-100 py-1 ">
+                <div v-for="(color,index) in colors" :key="index" class="color-border">
+                  <div @click="selectColor(index)" class="color-circle" :data-name="color.color_name"
+                       :style="'background-color:'+ color.color_code+';'"/>
                 </div>
               </div>
-              <p id = "selected_color" class = "mb-3 mt-1"></p>
+              <p id="selected_color" class="mb-3 mt-1"></p>
 
 
             </div>
 
             <div class="col-md-12 mb-2">
               <label class="label" for="size_id">سایز</label>
-              <select id = "size_id" class = "form-select form-select-sm m-0">
+              <select id="size_id" class="form-select form-select-sm m-0">
                 <!--                            <option value = ""></option>-->
-                <option @select = "showDimensions(size.dimensions)" class = "option " v-for = "(size, i) in sizes" :key = "i" :value = "size.id" :data-dimensions = "size.dimensions">
-                  {{size.size}} {{size.dimensions}}
+                <option @select="showDimensions(size.dimensions)" class="option " v-for="(size, i) in sizes" :key="i"
+                        :value="size.id" :data-dimensions="size.dimensions">
+                  {{ size.size }} {{ size.dimensions }}
 
                 </option>
               </select>
               <div class="w-100 mt-3">
-<!--                <p id="dimensions"></p>-->
+                <!--                <p id="dimensions"></p>-->
               </div>
             </div>
             <!--          </div>-->
@@ -78,11 +78,16 @@
               <small v-if="product.off" class="text-decoration-line-through">{{ product.price }} </small>
             </div>
             <small class="flex-row-reverse d-flex justify-content-start mt-1 mb-3">
-              <i class="bi me-1" :class = "{'bi-star-fill': product.score >= 1, 'bi-star' : product.score == 0,'text-warning': product.stock, 'bi-star-half ': 0 < product.score && product.score < 1 ,'text-muted': product.stock == 0}"></i>
-              <i class="bi me-1" :class = "{'bi-star-fill': product.score >= 2, 'bi-star' : product.score < 2 && product.score < 1 ,'text-warning': product.stock, 'bi-star-half ': 1 < product.score && product.score < 2 ,'text-muted':product.stock == 0}"></i>
-              <i class="bi me-1" :class = "{'bi-star-fill': product.score >= 3, 'bi-star' : product.score < 3 && product.score < 2,'text-warning': product.stock, 'bi-star-half ': 2 < product.score && product.score < 3 ,'text-muted': product.stock == 0}"></i>
-              <i class="bi me-1" :class = "{'bi-star-fill': product.score >= 4, 'bi-star' : product.score < 4 && product.score < 3,'text-warning': product.stock, 'bi-star-half ': 3 < product.score && product.score < 4 ,'text-muted': product.stock == 0}"></i>
-              <i class="bi me-1" :class = "{'bi-star-fill': product.score >= 5, 'bi-star' : product.score < 5 && product.score < 4,'text-warning': product.stock, 'bi-star-half ': 4 < product.score && product.score < 5 ,'text-muted': product.stock == 0}"></i>
+              <i class="bi me-1"
+                 :class="{'bi-star-fill': product.score >= 1, 'bi-star' : product.score == 0,'text-warning': product.stock, 'bi-star-half ': 0 < product.score && product.score < 1 ,'text-muted': product.stock == 0}"></i>
+              <i class="bi me-1"
+                 :class="{'bi-star-fill': product.score >= 2, 'bi-star' : product.score < 2 && product.score < 1 ,'text-warning': product.stock, 'bi-star-half ': 1 < product.score && product.score < 2 ,'text-muted':product.stock == 0}"></i>
+              <i class="bi me-1"
+                 :class="{'bi-star-fill': product.score >= 3, 'bi-star' : product.score < 3 && product.score < 2,'text-warning': product.stock, 'bi-star-half ': 2 < product.score && product.score < 3 ,'text-muted': product.stock == 0}"></i>
+              <i class="bi me-1"
+                 :class="{'bi-star-fill': product.score >= 4, 'bi-star' : product.score < 4 && product.score < 3,'text-warning': product.stock, 'bi-star-half ': 3 < product.score && product.score < 4 ,'text-muted': product.stock == 0}"></i>
+              <i class="bi me-1"
+                 :class="{'bi-star-fill': product.score >= 5, 'bi-star' : product.score < 5 && product.score < 4,'text-warning': product.stock, 'bi-star-half ': 4 < product.score && product.score < 5 ,'text-muted': product.stock == 0}"></i>
             </small>
 
 
@@ -153,12 +158,13 @@
 </template>
 
 <script>
-import {onBeforeUnmount, onMounted, onUnmounted, ref} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
 import {useRoute} from "vue-router/dist/vue-router";
 import App from '../App'
+
 export default {
   name: "Product",
-  components: { App},
+  components: {App},
   setup() {
 
     const user = ref(JSON.parse(localStorage.getItem('user')))
@@ -171,7 +177,7 @@ export default {
     const sizes = ref([]);
 
     const getData = () => {
-      axios.get(App.data().apiUrl+'/api/product/' + id.value,)
+      axios.get(App.data().apiUrl + '/api/product/' + id.value,)
           .then((response) => {
             product.value = response.data.product;
             features.value = JSON.parse(response.data.product.features);
@@ -185,14 +191,16 @@ export default {
             }
             console.log(response.data)
             console.log(colors.value)
-            document.getElementById('img0').setAttribute('src',App.data().apiUrl+response.data.product.images[0])
-            document.getElementById('img1').setAttribute('src',App.data().apiUrl+response.data.product.images[1])
-            document.getElementById('img2').setAttribute('src',App.data().apiUrl+response.data.product.images[2])
-            document.getElementById('img3').setAttribute('src',App.data().apiUrl+response.data.product.images[3])
+            document.getElementById('img0').setAttribute('src', App.data().apiUrl + response.data.product.images[0])
+            document.getElementById('img1').setAttribute('src', App.data().apiUrl + response.data.product.images[1])
+            document.getElementById('img2').setAttribute('src', App.data().apiUrl + response.data.product.images[2])
+            document.getElementById('img3').setAttribute('src', App.data().apiUrl + response.data.product.images[3])
           })
-          .then(()=>{
+          .then(() => {
             showDimensions();
-
+          })
+          .then(() => {
+            let b = document.querySelector('#colorsPart :nth-child(1)').firstChild.click();
           })
           .catch();
 
@@ -200,21 +208,16 @@ export default {
     };
     const addToCart = () => {
 
-      document.getElementById('alert-success').style.opacity = '0.95';
-      document.getElementById('alert-success').style.top = '400px';
-      setTimeout(() => {
-        document.getElementById('alert-success').style.top = '-50px';
-        document.getElementById('alert-success').style.opacity = '0';
-      }, 3000);
 
 
 
-      if (!user.value) {
+      if (user.value == null) {
+        // alert(user.value)
         alert('لطفا برای سفارش محصول ابتدا از منوی ورود وارد اکانت خود شوید.')
       } else {
 
 
-        axios.post(App.data().apiUrl+"/api/order", {
+        axios.post(App.data().apiUrl + "/api/order", {
           user_id: JSON.parse(localStorage.user).id,
           product_id: product.value.id,
           product_size_id: document.getElementById('size_id').value,
@@ -235,15 +238,19 @@ export default {
             })
             .then(() => {
               // showToast.value = true;
-              // setTimeout(() => (this.showToast = false), 3000);
+
+              document.getElementById('alert-success').style.opacity = '0.95';
+              document.getElementById('alert-success').style.top = '400px';
+              setTimeout(() => {
+                document.getElementById('alert-success').style.top = '-50px';
+                document.getElementById('alert-success').style.opacity = '0';
+              }, 3000);
+
+              setTimeout(() => (this.showToast = false), 3000);
 
 
               // App.methods.updateUserInfo();
               // document.getElementById('cart_count').innerHTML = JSON.parse(localStorage.getItem('user')).cart?.items?.length || 0;
-
-            })
-            .then(()=>{
-              // App.methods.checkUser();
 
             })
             .catch((error) => {
@@ -256,11 +263,11 @@ export default {
       getData();
     });
 
-    const showDimensions =(txt)=> {
+    const showDimensions = (txt) => {
       // alert(txt);
       // document.getElementById('dimensions').innerText = txt;
     }
-    const selectColor = (index)=> {
+    const selectColor = (index) => {
       if (document.querySelector('.selected_color')) {
         document.querySelector('.selected_color').classList.remove('selected_color');
       }
@@ -275,7 +282,7 @@ export default {
 
         let color = document.querySelector('.selected_color').getAttribute('data-name');
 
-        axios.get(App.data().apiUrl+"/api/sizes/product/" + id.value  + '/' + color)
+        axios.get(App.data().apiUrl + "/api/sizes/product/" + id.value + '/' + color)
             .then(async (res) => {
               sizes.value = [];
               let j = 0;
@@ -291,15 +298,15 @@ export default {
     };
 
 
-onBeforeUnmount(()=>{
-  document.getElementById('img0').setAttribute('src','')
-  document.getElementById('img1').setAttribute('src','')
-  document.getElementById('img2').setAttribute('src','')
-  document.getElementById('img3').setAttribute('src','')
+    onBeforeUnmount(() => {
+      document.getElementById('img0').setAttribute('src', '')
+      document.getElementById('img1').setAttribute('src', '')
+      document.getElementById('img2').setAttribute('src', '')
+      document.getElementById('img3').setAttribute('src', '')
 
-})
+    })
     return {
-      id,  product, colors, images, addToCart, getData, router, features, showDimensions, selectColor, sizes, user
+      id, product, colors, images, addToCart, getData, router, features, showDimensions, selectColor, sizes, user
     }
   },
 

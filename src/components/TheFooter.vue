@@ -3,7 +3,7 @@
     <div class="row col-xl-10 mt-5" >
       <div class="col-6 col-md-2 mt-4" >
 
-        <img src="img/enamad.png" class="img-fluid" alt="">
+        <img src="/img/enamad.png" class="img-fluid" alt="">
       </div>
       <div class="col-6 col-md-2 mt-4" >
         <p class="h6 fw-bold mb-3" >حساب کاربری</p>

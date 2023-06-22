@@ -3,13 +3,13 @@
   <header >
     <div class="col-12 bg-2">
       <div class="">
-        <img src="img/600x60-safir-code.gif" width="100%" alt="">
+        <img src="/img/600x60-safir-code.gif" width="100%" alt="">
         <div class="px-5" style="width: 100%; height: 150px; ">
 
 
           <div style="float: none; padding-top: 30px; cursor: pointer">
           <a href="/">
-            <img width="150px" src="img/roxi2.png" alt="">
+            <img width="150px" src="/img/roxi2.png" alt="">
           </a>
           </div>
 
@@ -61,12 +61,15 @@ export default {
 
   data(){
     return{
+      // apiUrl:'http://localhost:8000',
+      // imgUrl:'http://localhost:8000',
       apiUrl:'https://panel.shop2.webagent.ir',
       imgUrl:'https://panel.shop2.webagent.ir',
     }
   },
   updated() {
-        let user = JSON.parse(localStorage.getItem('user'))
+
+    let user = localStorage.getItem('user')
     if(!user){
       document.getElementById('login').classList.remove('d-none')
       document.getElementById('cart').classList.add('d-none')
